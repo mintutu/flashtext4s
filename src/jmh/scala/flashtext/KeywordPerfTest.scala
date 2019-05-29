@@ -56,7 +56,7 @@ object KeywordPerfTest {
 class KeywordPerfTest {
   @Benchmark
   def extractWithKeywordProcessor(state: KeywordState) = {
-    state.keywordProcessor.extractKeywords(state.content.toList)
+    state.keywordProcessor.findKeywords(state.content)
   }
 
   @Benchmark

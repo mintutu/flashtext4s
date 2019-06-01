@@ -7,19 +7,21 @@ case class KeywordProcessor(caseSensitive: Boolean = false) {
   var rootNode: KeywordTrieNode = KeywordTrieNode()
 
   def addKeyWord(word: String): Unit = {
-    addKeyWord(word, word)
+    val inputWord = if (caseSensitive) word.toLowerCase else word
+    addKeyWord(inputWord, inputWord)
   }
 
   def addKeyWord(word: String, cleanName: String): Unit = {
-    rootNode.add(word, cleanName, word.toList)
+    val (inputWord, inputCleanName) = if (caseSensitive) (word.toLowerCase, cleanName.toLowerCase) else (word, cleanName)
+    rootNode.add(inputWord, inputCleanName, inputWord.toList)
   }
 
   def findKeywords(input: String): mutable.Set[String] = {
     var keywords = mutable.Set[String]()
     var currentNode = rootNode
-    input.foreach {
-      c =>
-        val node = currentNode.get(c)
+    input.foreach { c =>
+        val character = if (caseSensitive) c.toLower else c
+        val node = currentNode.get(character)
         if (node.isDefined) {
           currentNode = node.get
           currentNode.get().map{keywords += _}
@@ -34,9 +36,9 @@ case class KeywordProcessor(caseSensitive: Boolean = false) {
     val output: mutable.StringBuilder = new mutable.StringBuilder()
     val buffer: mutable.StringBuilder = new mutable.StringBuilder()
     var currentNode = rootNode
-    input.foreach {
-      c =>
-        val node = currentNode.get(c)
+    input.foreach { c =>
+        val character = if (caseSensitive) c.toLower else c
+        val node = currentNode.get(character)
         if (node.isDefined) {
           currentNode = node.get
           currentNode.get() match {

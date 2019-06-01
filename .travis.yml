@@ -1,0 +1,12 @@
+language: scala
+
+jdk: openjdk8
+
+scala:
+  - 2.12.8
+
+script:
+  - sbt clean coverage test coverageReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN

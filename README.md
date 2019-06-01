@@ -1,4 +1,6 @@
 # FlashText4s
+[![codecov](https://codecov.io/gh/mintutu/fashtext4s/branch/master/graph/badge.svg)](https://codecov.io/gh/mintutu/flashtext4s)
+[![Build Status](https://travis-ci.com/mintutu/flashtext4s.svg?branch=master)](https://travis-ci.com/mintutu/flashtext4s)
 
 A idiomatic port of [flashtext.py](https://github.com/vi3k6i5/flashtext) into Scala
 

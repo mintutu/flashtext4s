@@ -5,7 +5,7 @@
 
 A idiomatic port of [flashtext.py](https://github.com/vi3k6i5/flashtext) into Scala
 
-###Usage
+### Usage
 ***Extract keywords***
 ```scala
     val keywordProcessor = KeywordProcessor()

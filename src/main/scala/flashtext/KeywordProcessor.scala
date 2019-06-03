@@ -21,18 +21,17 @@ case class KeywordProcessor(caseSensitive: Boolean = false) {
     var currentNode = rootNode
     input.foreach { c =>
         val character = if (caseSensitive) c.toLower else c
-        val node = currentNode.get(character)
-        if (node.isDefined) {
-          currentNode = node.get
-          currentNode.get().map{keywords += _}
-        } else {
-          currentNode = rootNode
+        currentNode.get(character) match {
+          case Some(node) =>
+            currentNode = node
+            currentNode.get().map{keywords += _}
+          case None => currentNode = rootNode
         }
     }
     keywords
   }
 
-  def replaceKeyWords(input: String): String = {
+  def replaceKeywords(input: String): String = {
     val output: mutable.StringBuilder = new mutable.StringBuilder()
     val buffer: mutable.StringBuilder = new mutable.StringBuilder()
     var currentNode = rootNode

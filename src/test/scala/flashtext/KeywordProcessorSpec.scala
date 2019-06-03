@@ -54,21 +54,21 @@ class KeywordProcessorSpec extends FlatSpec with Matchers {
   "replaceKeyWords" should "replace keyword at the end of the sentence" in {
     val keywordProcessor = KeywordProcessor()
     keywordProcessor.addKeyWord("apple", "banana")
-    val actualResult = keywordProcessor.replaceKeyWords("I like the apple")
+    val actualResult = keywordProcessor.replaceKeywords("I like the apple")
     actualResult shouldBe "I like the banana"
   }
 
   "replaceKeyWords" should "skip incomplete at the end of the sentence" in {
     val keywordProcessor = KeywordProcessor()
     keywordProcessor.addKeyWord("pineapple", "banana")
-    val actualResult = keywordProcessor.replaceKeyWords("I like the apple")
+    val actualResult = keywordProcessor.replaceKeywords("I like the apple")
     actualResult shouldBe "I like the apple"
   }
 
   "replaceKeyWords" should "find keyword at the beginning" in {
     val keywordProcessor = KeywordProcessor()
     keywordProcessor.addKeyWord("Scala", "Java")
-    val actualResult = keywordProcessor.replaceKeyWords("Scala is the best programming language")
+    val actualResult = keywordProcessor.replaceKeywords("Scala is the best programming language")
     actualResult shouldBe "Java is the best programming language"
   }
 
@@ -76,7 +76,7 @@ class KeywordProcessorSpec extends FlatSpec with Matchers {
     val keywordProcessor = KeywordProcessor()
     keywordProcessor.addKeyWord("Scala", "Python")
     keywordProcessor.addKeyWord("Java", "C++")
-    val actualResult = keywordProcessor.replaceKeyWords("I like Scala and Java")
+    val actualResult = keywordProcessor.replaceKeywords("I like Scala and Java")
     actualResult shouldBe "I like Python and C++"
   }
 
@@ -84,14 +84,14 @@ class KeywordProcessorSpec extends FlatSpec with Matchers {
     val keywordProcessor = KeywordProcessor()
     keywordProcessor.addKeyWord("Scala", "Java")
     keywordProcessor.addKeyWord("functional", "object oriented")
-    val actualResult = keywordProcessor.replaceKeyWords("Scala is functional programming")
+    val actualResult = keywordProcessor.replaceKeywords("Scala is functional programming")
     actualResult shouldBe "Java is object oriented programming"
   }
 
   "replaceKeyWords" should "with case sensitive" in {
     val keywordProcessor = KeywordProcessor(true)
     keywordProcessor.addKeyWord("SCALA", "the Pineapple")
-    val actualResult = keywordProcessor.replaceKeyWords("I like scala")
+    val actualResult = keywordProcessor.replaceKeywords("I like scala")
     actualResult shouldBe "I like the pineapple"
   }
 }
